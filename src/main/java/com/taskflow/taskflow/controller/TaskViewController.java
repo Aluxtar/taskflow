@@ -14,6 +14,7 @@ public class TaskViewController {
     @Autowired
     private TaskService taskService;
 
+    
     // Display all tasks
     @GetMapping("/")
     public String viewAllTasks(Model model) {
