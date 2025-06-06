@@ -16,21 +16,21 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    // Crear nueva tarea
+    //Create new tasks
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
         Task created = taskService.createTask(task);
         return ResponseEntity.ok(created);
     }
 
-    // Obtener todas las tareas
+    //Show all tasks
     @GetMapping
     public ResponseEntity<List<Task>> getAllTasks() {
         List<Task> tasks = taskService.getAllTasks();
         return ResponseEntity.ok(tasks);
     }
 
-    // Obtener tarea por id
+    //Get task by ID
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
         Optional<Task> taskOpt = taskService.getTaskById(id);
@@ -38,14 +38,14 @@ public class TaskController {
                       .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Actualizar tarea
+    //Update task
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
         Task updated = taskService.updateTask(id, task);
         return ResponseEntity.ok(updated);
     }
 
-    // Eliminar tarea
+    //Delete task
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         boolean deleted = taskService.deleteTask(id);

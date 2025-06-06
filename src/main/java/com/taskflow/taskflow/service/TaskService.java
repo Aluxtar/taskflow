@@ -14,22 +14,22 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    // Crear nueva tarea
+    //Create new tasks
     public Task createTask(Task task) {
         return taskRepository.save(task);
     }
 
-    // Obtener todas las tareas
+    //Get all tasks
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-    // Obtener tarea por id
+    //Show task by ID
     public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(id);
     }
 
-    // Actualizar tarea
+    //Update task
     public Task updateTask(Long id, Task updatedTask) {
         return taskRepository.findById(id).map(task -> {
             task.setTitle(updatedTask.getTitle());
@@ -37,13 +37,13 @@ public class TaskService {
             task.setCompleted(updatedTask.isCompleted());
             return taskRepository.save(task);
         }).orElseGet(() -> {
-            // Si no existe la tarea, crear una nueva con ese id (opcional)
+            // Create task if the id does not exist
             updatedTask.setId(id);
             return taskRepository.save(updatedTask);
         });
     }
 
-    // Eliminar tarea por id
+    //Delete task by ID
     public boolean deleteTask(Long id) {
         if(taskRepository.existsById(id)) {
             taskRepository.deleteById(id);
