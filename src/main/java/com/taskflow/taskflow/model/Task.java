@@ -8,9 +8,6 @@ import lombok.*;
 @NoArgsConstructor //Creates the empty constructor
 @AllArgsConstructor //Creates constructor with all arguments
 
-@Getter
-@Setter
-
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
